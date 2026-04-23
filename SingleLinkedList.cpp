@@ -35,7 +35,10 @@ public:
                 cout << "\nDuplikasi noMhs tidak diijinkan\n";
                 return;
             }
-            
+
+            nodeBaru->next = START;
+            START = newNode;
+            return;
         }
     }
 
