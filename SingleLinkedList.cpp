@@ -25,8 +25,8 @@ public:
         cout << "\nMasukkan Nomor Mahasiswa : ";
         cin >> nim;
 
-        Node *newNode = new Node();
-        newNode->noMhs = nim;
+        Node *nodeBaru = new Node();
+        nodeBaru->noMhs = nim;
 
         if (START == NULL || nim <= START -> noMhs)
         {
@@ -37,7 +37,7 @@ public:
             }
             
             nodeBaru->next = START;
-            START = newNode;
+            START = nodeBaru;
             return;
         }
 
@@ -55,8 +55,8 @@ public:
             current = current->next;
         }
 
-        newBaru->next = current;
-        previous->next = newBaru;
+        nodeBaru->next = current;
+        previous->next = nodeBaru;
     }
 
     bool listEmpty()
@@ -76,6 +76,22 @@ public:
         }
 
         return (current != NULL);
+    }
+
+    bool delNode(int nim)
+    {
+        Node *current, *previous;
+
+        if (!search(nim, previous, current))
+            return false;
+
+        if (current == START)
+            START = START->next;
+        else
+            previous->next = current->next;
+        
+        delete current;
+        return true;
     }
 
 };
